@@ -3,7 +3,10 @@ import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 
 import { Link } from 'react-router-dom';
+import { ShoppingBasket } from '@mui/icons-material';
+import { useStateValue } from './StateProvider';
 function Header() {
+  const [{basket},dispatch] = useStateValue();
   return (
     <div className='header'>
        <Link to="/Home">
@@ -13,12 +16,9 @@ function Header() {
        </Link>
       
       
-     
       <div className='header-search'><input className='header-sectionInput' type='text'/>
-        
-
+        <SearchIcon className='header__searchIcon'/>
       </div>
-      <SearchIcon/>
       <div className='header__nav'>
         <div className='header__option'>
           <span className='header__optionLineOne'>Hello Guest</span>
@@ -39,6 +39,8 @@ function Header() {
           
         </div>
         <div className='header__optionBasket'>
+          <ShoppingBasket/>
+          <span className='header__optionLineTwo header__basketCount'>{basket?.length}</span>
           
         </div>
       </div>
